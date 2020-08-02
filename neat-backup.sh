@@ -40,7 +40,7 @@ tar czPf ${BAK_DB}.tar.gz *.sql
 rm *.sql
 
 echo 'Copying database backup to offsite server ...'
-scp -i /home/zach/.ssh/id_rsa_nopass -P 821 ${BAK_DB}.tar.gz zach@murf.ddns.net:/home/zach/backup/db/db-${BAK_DATETIME}.tar.gz
+scp ${BAK_DB}.tar.gz <location here>/backup/db/db-${BAK_DATETIME}.tar.gz
 
 #ARCHIVING FILES / FOLDER
 echo 'Archiving files and folders...'
@@ -52,7 +52,7 @@ do
   echo 'Archiving ' ${F} '...'
   i=`expr ${i} + 1`
   tar czPf ${BAK_FOLDER}/FILE_${i}_${BAK_DATETIME}.tar.gz ${F}
-  scp -i /home/zach/.ssh/id_rsa_nopass -P 821  ${BAK_FOLDER}/FILE_${i}_${BAK_DATETIME}.tar.gz zach@murf.ddns.net:/home/zach/backup/files/FILE_${i}_${BAK_DATETIME}.tar.gz
+  scp ${BAK_FOLDER}/FILE_${i}_${BAK_DATETIME}.tar.gz <location here>/backup/files/FILE_${i}_${BAK_DATETIME}.tar.gz
 done
 
 #DELETE FILES OLDER THAN 7 days
